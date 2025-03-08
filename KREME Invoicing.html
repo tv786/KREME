@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Form</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <form id="invoiceForm">
+        <label for="invoiceDate">Invoice Date:</label>
+        <input type="date" id="invoiceDate" name="invoiceDate" required>
+
+        <label for="buyerName">Buyer Name:</label>
+        <input type="text" id="buyerName" name="buyerName" required>
+
+        <label for="buyerAddress">Buyer Address:</label>
+        <input type="text" id="buyerAddress" name="buyerAddress" required>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Qty</th>
+                    <th>Items Unit</th>
+                    <th>Item Rate (₹)</th>
+                    <th>Total Amount (₹)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="itemTableBody">
+                <!-- Table rows for items will be added dynamically -->
+            </tbody>
+        </table>
+
+        <button type="button" onclick="addRow()">Add Item</button>
+
+        <label for="addAmount">Add (+) (₹):</label>
+        <input type="number" id="addAmount" name="addAmount" min="0" step="0.01" oninput="updateTotalInvoiceAmount()">
+
+        <label for="remarks">Remarks:</label>
+        <input type="text" id="remarks" name="remarks">
+
+        <label for="paymentStatus">Payment Status:</label>
+        <select id="paymentStatus" name="paymentStatus" required>
+            <option value="Cash">Cash</option>
+            <option value="Bank">Bank</option>
+            <option value="Pending">Pending</option>
+        </select>
+
+        <label for="totalInvoiceAmount">Total Invoice Amount (₹):</label>
+        <input type="text" id="totalInvoiceAmount" name="totalInvoiceAmount" readonly>
+
+        <button type="button" onclick="sendViaWhatsApp()">Send via WhatsApp</button>
+        <button type="button" onclick="sendToGoogleSheet()">Send to Spreadsheet</button>
+    </form>
+        
+ <script src="Script.js" type="text/JavaScript" charset="utf-8"></script>
+
+</body>
+</html>
