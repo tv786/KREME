@@ -166,7 +166,7 @@ function sendToGoogleSheet() {
         invoiceDate, buyerName, buyerAddress, items, addAmount, paymentStatus, remarks, totalInvoiceAmount
     };
 
-    fetch("AKfycbwphrz4j1Qjgj7poiXD4qNx6YXIqBMLSt2r3PuXbB8", {
+    fetch("https://script.google.com/macros/s/AKfycbwSz9SrWVSjf9sgZappg5l653lO8ZXS9uqSPs1Y93y8t_O1meDy2IE_t5T8FuY2UBhV/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
