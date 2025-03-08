@@ -140,38 +140,16 @@ function getOrdinalSuffix(number) {
 }
 
 // Send data to Google Sheets
-function sendToGoogleSheet() {
-    const invoiceDate = document.getElementById('invoiceDate').value;
-    const buyerName = document.getElementById('buyerName').value;
-    const buyerAddress = document.getElementById('buyerAddress').value;
-    const paymentStatus = document.getElementById('paymentStatus').value;
-    const remarks = document.getElementById('remarks').value;
-    const addAmount = document.getElementById('addAmount').value;
-    const totalInvoiceAmount = document.getElementById('totalInvoiceAmount').value;
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxTqc74RMIcGMXuTBkdFLL5BD233heFTu3phvPHn6kc6cFl1QFF7ELYo7eTB8vdEMI2/exec'
 
-    const itemRows = document.querySelectorAll('#itemTableBody tr');
-    let items = [];
+const form = document.forms['kreme-form']
 
-    itemRows.forEach(row => {
-        items.push({
-            itemName: row.cells[0].querySelector('select').value,
-            itemQty: row.cells[1].querySelector('input').value,
-            itemsUnit: row.cells[2].querySelector('select').value,
-            itemRate: row.cells[3].querySelector('input').value,
-            totalAmount: row.cells[4].querySelector('input').value
-        });
-    });
-
-    const data = {
-        invoiceDate, buyerName, buyerAddress, items, addAmount, paymentStatus, remarks, totalInvoiceAmount
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbwaZLbC8snSWFtToif_Xcbds3Vo6kZ4U15CShMjd0KJIg7H8o-lXUifl6z_tFE97k82/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(data => alert("Invoice saved to Google Sheets!"))
-    .catch(error => alert("Error: " + error));
-}
+form.addEventListener('submit', e => {
+  
+  e.preventDefault()
+  
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  .then(response => alert("Thank you! Form is submitted" ))
+  .then(() => { window.location.reload(); })
+  .catch(error => console.error('Error!', error.message))
+})
