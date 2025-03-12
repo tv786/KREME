@@ -1,110 +1,89 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KREME Invoice Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Data Entry Form</h1>
+</head>
+<body>
+    <section class="hero is-bold gradient-bg">
+        <div class="has-text-centered">
+            <img src="logo.png" alt="KREME Logo" class="logo" width="8%">
+            <h1 class="title has-text-white">KREME Invoice Form</h1>
         </div>
-      </div>
     </section>
-    <form id="form" class="container m-4 pl-4" method="POST">
+
+    <form id="form" class="container box p-5 my-5" method="POST">
+        <div class="field">
+            <label class="label">Invoice Date:</label>
+            <input type="date" id="invoiceDate" name="invoiceDate" class="input" required>
+        </div>
 
         <div class="field">
-            <label for="invoiceDate" class="label">Invoice Date:</label>
-            <div class="control">
-                <input type="date" id="invoiceDate" name="invoiceDate" class="input" required>
-            </div>
+            <label class="label">Buyer Name:</label>
+            <input type="text" id="buyerName" name="buyerName" class="input" required>
         </div>
+
         <div class="field">
-            <label for="buyerName" class="label">Buyer Name:</label>
-            <div class="control">
-                <input type="text" id="buyerName" name="buyerName" class="input" required>
-            </div>
+            <label class="label">Buyer Address:</label>
+            <input type="text" id="buyerAddress" name="buyerAddress" class="input" required>
         </div>
+
         <div class="field">
-            <label for="buyerAddress" class="label">Buyer Address:</label>
-            <div class="control">
-                <input type="text" id="buyerAddress" name="buyerAddress" class="input" required>
-            </div>
-        </div>
-        <div class="field">
-            <table>
+            <table class="table is-fullwidth is-striped">
                 <thead>
                     <tr>
                         <th>Item Name</th>
-                        <th>Item Qty</th>
-                        <th>Items Unit</th>
-                        <th>Item Rate (₹)</th>
-                        <th>Total Amount (₹)</th>
+                        <th>Qty</th>
+                        <th>Unit</th>
+                        <th>Rate (₹)</th>
+                        <th>Total (₹)</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="itemTableBody">
-                    <!-- Table rows for items will be added dynamically -->
+                    <!-- Items will be added dynamically -->
                 </tbody>
             </table>
-            <button type="button" onclick="addRow()">Add Item</button>
+            <button type="button" class="button is-info mt-2" onclick="addRow()">Add Item</button>
         </div>
+
         <div class="field">
-            <label for="addAmount"  class="label">Add (+) (₹):</label>
-            <div class="control">
-                <input type="number" id="addAmount" name="addAmount" min="0" step="0.01" class="input" oninput="updateTotalInvoiceAmount()">
-            </div>
+            <label class="label">Add (+) (₹):</label>
+            <input type="number" id="addAmount" name="addAmount" class="input" min="0" step="0.01" oninput="updateTotalInvoiceAmount()">
         </div>
+
         <div class="field">
-            <label for="remarks" class="label">Remarks:</label>
-            <div class="control">
-                <input type="text" id="remarks" name="remarks" class="input" >
-            </div>
+            <label class="label">Remarks:</label>
+            <input type="text" id="remarks" name="remarks" class="input">
         </div>
+
         <div class="field">
-            <label for="paymentStatus" class="label">Payment Status:</label>
-            <div class="control">
-                <select id="paymentStatus" name="paymentStatus"  class="input" required>
+            <label class="label">Payment Status:</label>
+            <div class="select is-fullwidth">
+                <select id="paymentStatus" name="paymentStatus" required>
                     <option value="Cash">Cash</option>
                     <option value="Bank">Bank</option>
                     <option value="Pending">Pending</option>
                 </select>
             </div>
         </div>
+
         <div class="field">
-            <label for="totalInvoiceAmount" class="label">Total Invoice Amount (₹):</label>
-            <div class="control">
-                <input type="text" id="totalInvoiceAmount" name="totalInvoiceAmount" class="input" readonly>
-            </div>
+            <label class="label">Total Invoice Amount (₹):</label>
+            <input type="text" id="totalInvoiceAmount" name="totalInvoiceAmount" class="input" readonly>
         </div>
 
-
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-primary" type="submit" id="submit-button">
-            Send to Spreadsheet
-          </button>
+        <div class="buttons">
+            <button type="submit" class="button is-primary">Send to Spreadsheet</button>
+            <button type="reset" class="button is-danger">Cancel</button>
         </div>
-        <div class="control">
-          <button class="button is-danger">Cancel</button>
-        </div>
-      </div>
     </form>
-    <div
-      id="message"
-      style="
-        display: none;
-        margin: 20px;
-        font-weight: bold;
-        color: green;
-        padding: 8px;
-        background-color: beige;
-        border-radius: 4px;
-        border-color: aquamarine;
-      "
-    ></div>
 
-    <script src="index.js" type="text/JavaScript" charset="utf-8"></script>
-  </body>
+    <div id="message" class="notification is-success is-hidden">Form submitted successfully!</div>
+
+    <script src="index.js"></script>
+</body>
 </html>
