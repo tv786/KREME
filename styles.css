@@ -15,11 +15,15 @@ body {
     color: var(--text-color);
 }
 
+h2 {
+    font-size: 1.6rem !important;
+
+}
 .has-text-centered {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
+    padding: 10px 50px;
 }
 
 img {
@@ -120,7 +124,7 @@ img {
 /* 📱 Mobile Responsive */
 @media (max-width: 600px) {
     .has-text-centered {
-        flex-direction: row;
+        flex-direction: column;
     }
     
     .table td, .table th {
