@@ -1,246 +1,45 @@
-/* 🌎 Global Theme Variables */
-:root {
-    --primary-color: #007BFF; /* Main Theme Color */
-    --secondary-color: #0056D2; /* Secondary Theme Color */
-    --danger-color: #f44336; /* Delete Button */
-    --danger-hover-color: #d32f2f;
-    --text-color: #333; /* Default Text Color */
-    --border-color: #ddd;
-    --font-family: 'Inter', sans-serif;
-}
-
-/* 🌟 Apply Global Font */
-body {
-    font-family: var(--font-family);
-    color: var(--text-color);
-}
-
-/* ✨ Heading Animation */
-h2 {
-    font-size: 1.6rem !important;
-    opacity: 0;
-    transform: translateY(-10px);
-    animation: fadeInDown 0.5s ease-in-out forwards;
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.has-text-centered {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 50px;
-    opacity: 0;
-    transform: scale(0.95);
-    animation: fadeInScale 0.5s ease-in-out forwards 0.2s;
-}
-
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* 🌟 Image Animation */
-img {
-    margin: 20px;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.5s ease-in-out forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 🎨 Blue Gradient Theme */
-.gradient-bg {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-}
-
-/* 📊 Table Styling */
-.table {
+table {
+    width: 100%;
     border-collapse: collapse;
-    width: 100%;
+    margin-bottom: 20px;
 }
 
-/* 🌟 Animated Row Appearance */
-.table tbody tr {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInRow 0.3s ease-in-out forwards;
-}
-
-@keyframes fadeInRow {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 🎭 Row Hover Effect */
-.table tbody tr:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-    transition: background-color 0.3s;
-}
-
-/* 🎯 Table Headers */
-.table th {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: left;
-}
-
-.table thead td, .table thead th {
+thead th {
     color: white;
 }
 
-.table td, .table th {
+th, td {
+    border: 1px solid #ddd;
     padding: 10px;
-    border: 1px solid var(--border-color);
     text-align: left;
-    transition: background-color 0.3s;
-}
-
-/* 🖊 Input Fields in Table */
-.table input,
-.table select {
-    width: 100%;
-    padding: 6px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
     font-size: 14px;
-    text-align: left;
-    font-family: var(--font-family);
-    transition: border-color 0.3s, transform 0.2s;
 }
-
-.table input:focus,
-.table select:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    transform: scale(1.03);
+th {
+    background-color: #4CAF50;
+    color: white;
 }
-
-/* ➕ Add Item Button (Now Animated) */
-.button.is-info {
-    display: block;
-    margin: 10px auto;
-    width: 150px;
-    background-color: var(--primary-color);
+button {
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 14px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    padding: 12px;
+    font-size: 16px;
 }
-
-.button.is-info:hover {
-    background-color: var(--secondary-color);
-    transform: scale(1.05);
-}
-
-/* 🌀 Loading Effect for Submit Button */
-#submit-button[disabled] {
-    background-color: #ccc;
-    cursor: not-allowed;
-    position: relative;
-}
-
-.is-primary {
-    background-color: var(--primary-color) !important;
-}
-
-#submit-button[disabled]::after {
-    content: '⏳';
-    position: absolute;
-    right: 10px;
-    animation: rotateLoader 1s linear infinite;
-}
-
-@keyframes rotateLoader {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* ❌ Delete Button with Animation */
 .delete-button {
-    background-color: var(--danger-color);
+    background-color: #f44336;
     color: white;
-    padding: 6px 10px;
+    padding: 6px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s, transform 0.2s;
 }
-
-.delete-button:hover {
-    background-color: var(--danger-hover-color);
-    transform: scale(1.05);
-}
-
-/* 🚀 Animated Row Removal */
-@keyframes fadeOutRow {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-}
-
-/* 🔺 Delete Icon */
 .delete-icon {
     font-size: 16px;
-    font-weight: bold;
 }
-
-/* 📱 Mobile Responsive */
 @media (max-width: 600px) {
-    .has-text-centered {
-        flex-direction: column;
-        opacity: 1;
-        transform: none;
-        animation: none;
-    }
-    
-    .table td, .table th {
-        padding: 6px;
-        font-size: 12px;
-    }
-
-    .delete-button {
-        padding: 4px 8px;
-        font-size: 12px;
+    th, td {
+        padding: 8px;
     }
 }
